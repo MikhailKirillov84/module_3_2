@@ -10,27 +10,24 @@
 #1 обязательно именованный аргумент со значением по умолчанию sender = "university.help@gmail.com".
 #Обязательно именованные аргументы отделяются от остальных символом "*" перед ними.
 def send_email(message, recipient, *, sender ="university.help@gmail.com"):
+    sufix = (".com", ".ru", ".net")
 
-    if recipient == sender: #Если(if) sender и recipient совпадают(==), то вывести "Нельзя отправить письмо самому себе!"
+    # Если(if) строки(str) recipient и sender не содержит(not in) "@" или(or) не оканчивается на ".com"/".ru"/".net",
+    # то вывести на экран(в консоль) строку: "Невозможно отправить письмо с адреса <sender> на адрес <recipient>".
+    if "@" not in recipient and sender or not (recipient.lower().endswith(sufix) and sender.lower().endswith(sufix)):
+        print("Невозможно отправить письмо с адреса " + sender + " на адрес " + recipient)
+        # чтобы соединить переменную с текстом, используем сложение "+"
 
+    elif recipient == sender: #Если же(elif) sender и recipient совпадают(==), то вывести "Нельзя отправить письмо самому себе!"
         print("Нельзя отправить письмо самому себе!")
 
     elif sender == "university.help@gmail.com": #Если же(elif) отправитель по умолчанию(==) - university.help@gmail.com,
                         # то вывести сообщение: "Письмо успешно отправлено с адреса <sender> на адрес <recipient>."
-
         print("Письмо успешно отправлено с адреса " + sender + " на адрес " + recipient)
                         #чтобы соединить переменную с текстом, используем сложение "+"
 
-    elif ("@" and (".com" or ".ru" or ".net")) not in str(recipient and sender) or ("@" or (".com" or ".ru" or ".net")) not in str(recipient and sender):
-        #Если же(elif) строки(str) recipient и sender не содержит(not in) "@" или(or) не оканчивается(not in) на ".com"/".ru"/".net",
-        # то вывести на экран(в консоль) строку: "Невозможно отправить письмо с адреса <sender> на адрес <recipient>".
-
-        print("Невозможно отправить письмо с адреса " + sender + " на адрес " + recipient)
-                        # чтобы соединить переменную с текстом, используем сложение "+"
-
     else:
         #В противном случае(else) вывести сообщение: "НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено с адреса <sender> на адрес <recipient>."
-
         print("НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено с адреса " + sender + " на адрес " + recipient)
                         # чтобы соединить переменную с текстом, используем сложение "+"
 
